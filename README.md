@@ -1,14 +1,23 @@
-# React static list of TODOs
-- Replace `<your_account>` with your Github username in the
-  [DEMO LINK](https://<your_account>.github.io/react_static-list-of-todos/)
-- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
+# View demo
+  [DEMO LINK](#)
 
 ## Task
-By using [todos.js](./src/api/todos.js) and [users.js](./src/api/users.js) as
-modules to your React application, create and display a list of all the TODO
-items. Alongside each item display information about the user it belongs to.
 
-1. Create a `preparedTodos` array of `todos` with a `user` property added to each `todo`. Place it in the `App.js`
-1. Create a component `TodoList` accepting an array of `preparedTodos` and displaying them as a list
-1. Create a component `Todo` accepting a `todo` object and displaying its `title`, `completed` status and `User`
-1. Create a component `User` accepting a `user` object and displaying its name with some styling
+Create responsive page that looks like on screenshots [desktop](https://drive.google.com/file/d/119fxJMIRq8W4kk12i4Ww15JaBwo-SAdB/view?usp=sharing) and [mobile](
+https://drive.google.com/file/d/1bsmsoRrKB6sZSAWfM2ofBM3MR2Noo318/view?usp=sharing)
+
+
+On click “Play” button should save info about this action (user ip, date time, button id) to click.log file without reloading page
+You can use any images for background, logo etc.
+For creating click.log file use PHP code
+(PHP example [here](https://stackoverflow.com/questions/24972424/create-or-write-append-in-text-file/44872604))
+
+
+Requirements:
+Experience on FrontEnd position 1+ year
+High level of HTML&CSS, JS
+Experience with Wordpress
+Basic knowledge of PHP is a plus
+English intermediate
+Ability to work independently and find solutions for non-standard tasks
+
