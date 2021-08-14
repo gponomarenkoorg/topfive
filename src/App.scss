@@ -1,1 +1,151 @@
-// styles go here
+@import './utils/vars';
+@import './utils/mixins';
+@import './utils/extends';
+@import './utils/reset';
+
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  background-image: url(./img/bck_casino.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+}
+.header {
+  color: $primaryColor;
+  padding: 0;
+  margin-bottom: 24px;
+  @extend %flexCentering;
+  background-color: $darkPrimary;
+  @include onDesktop {
+    background-color: transparent;
+  }
+
+  &__wrapper {
+    width: 400px;
+    @include onDesktop {
+      width: 800px;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 4px;
+    display: flex;
+    justify-content: flex-start;
+    @include onDesktop {
+      justify-content: center;
+      background-color: transparent;
+    }
+    &-img {
+      height: 40px;
+      @include onDesktop {
+        height: 80px;
+      }
+    }
+  }
+}
+
+.main {
+  padding: 20px;
+  @extend %flexCentering;
+  flex-direction: column;
+  @include onDesktop {
+    padding: 0 120px;
+  }
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.info {
+  width: 400px;
+  color: $primaryColor;
+  text-align: left;
+  @include onDesktop {
+    text-align: center;
+    width: 800px;
+  }
+  &__title {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  &__call {
+    font-size: 0.625rem;
+    font-weight: normal;
+    @extend %desktopVisibleBlock;
+  }
+  &__subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
+
+.casinos {
+  border-radius: 16px;
+  border-collapse: collapse;
+  &__head {
+    width: 400px;
+    border-spacing: 0;
+    @include onDesktop {
+      width: 800px;
+    }
+  }
+  &__header {
+    & th {
+      color: $primaryColor;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: greenyellow;
+      height: 2.5rem;
+      font-size: 0.75rem;
+    }
+    & th:first-child { border-top-left-radius: 12px; }
+    & th:last-child { border-top-right-radius: 12px; }
+    & th:first-child { border-bottom-left-radius: 12px; }
+    & th:last-child { border-bottom-right-radius: 12px; }
+  }
+  &__body {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 400px;
+    @include onDesktop {
+      width: 800px;
+    }
+  }
+}
+
+.casino {
+  &__card {
+    border-radius: 16px;
+    background-color: #fff;
+    & td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: center;
+    }
+    & td:first-child {
+      border-top-left-radius: 12px;
+      border-right: hidden;
+    }
+    & td:last-child { border-top-right-radius: 12px; }
+    & td:first-child { border-bottom-left-radius: 12px; }
+    & td:last-child { border-bottom-right-radius: 12px; }
+  }
+  &__wrapper {
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid #000;
+    padding: 4px;
+    width: 80px;
+    height: 80px;
+  }
+  &__img {
+    height: 100%;
+    width: 100%;
+  }
+}

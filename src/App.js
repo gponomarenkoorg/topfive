@@ -3,6 +3,9 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import Stars from 'react-rating-stars-component';
+// import cn from 'classnames';
+import logo from './img/logo.png';
 import './App.scss';
 import casinosList from './api/casinos.json';
 
@@ -13,76 +16,171 @@ export const App = () => {
     setCasinos(casinosList);
   }, []);
 
+  const numberWithComma = (x) => {
+    return x % 1000 === 0 ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;
+  };
+
+  const numberDotDecimal = (number) => {
+    return number % 1 === 0 ? number.toString().concat('.0') : number.toFixed(1).toString();
+  };
+
   return (
     <div className="body">
+
       <section className="header">
-        <div className="header__logo">
-          <img
-            src="https://winmagictoys.com/wp-content/uploads/2018/09/dummy-logo.png"
-            alt="logo"
-          />
+        <div className="header__wrapper">
+          <div className="header__logo">
+            <img
+              className="header__logo-img"
+              src={logo}
+              alt="logo"
+            />
+          </div>
         </div>
-        <h1 className="header__title">
-          TOP 5 Real Money Online Casino Bonus List!
-        </h1>
-        <p className="header__call">Play online slots for real money at trusted online casinos in Europe. Claim your exclusive welcome bonus and start playing slots today!</p>
-        <h2 className="header__subtitle">10,302 Claimed Bonuses And Counting!</h2>
       </section>
+
       <section className="main">
-        <table className="casinos">
-          <thead>
-            <tr className="casinos_header">
-              <th>casino</th>
-              <th>welcome bonus</th>
-              <th>user rating</th>
-              <th>rating</th>
-              <th>play now</th>
-            </tr>
-          </thead>
-          <tbody className="casinos_body">
-            {casinos.map(casino => {
-              const { id, casinoName, casinoUrl, casinoBackgroundColour, welcomeBonuses, userRatingNumber } = casino;
+        <div className="info">
+          <h1 className="info__title">
+            TOP 5 Real Money Online Casino Bonus List!
+          </h1>
+          <p className="info__call">Play online slots for real money at trusted online casinos in Europe. Claim your exclusive welcome bonus and start playing slots today!</p>
+          <h2 className="info__subtitle">10,302 Claimed Bonuses And Counting!</h2>
+        </div>
+        <div className="main__wrapper">
+          <div className="casinos">
+            <table className="casinos__head">
+              <tr className="casinos__header">
+                <th className="casinos__header-image">casino</th>
+                <th className="casinos__header-bonuses">welcome bonus</th>
+                <th className="casinos__header-rating">user rating</th>
+                <th className="casinos__header-average">rating</th>
+                <th className="casinos__header-button">play now</th>
+              </tr>
+            </table>
 
-              return (
-                <tr
-                  key={id}
-                  className="casino__card"
-                >
-                  {/* // put label_before_raw_ */}
-                  <td>
+            <table className="casinos__body">
+              {casinos.map(casino => {
+                const { id, casinoName, casinoLabel, casinoUrl, casinoBackgroundColour, welcomeBonuses, userRatingNumber, userRatingAverage } = casino;
 
-                    <div className="casino__wrapper">
-                      <img
-                        className="casino__img"
-                        src={casinoUrl}
-                        alt={casinoName}
+                return (
+                  <tr
+                    key={id}
+                    className="casino__card"
+                  >
+                    {/* // put label here */}
+                    <td className="card__cell-image">
+
+                      <div
+                        className="casino__wrapper"
+                        style={{
+                          backgroundColor: casinoBackgroundColour,
+                        }}
+                      >
+                        <img
+                          className="casino__img"
+                          src={casinoUrl}
+                          alt={casinoName}
+                        />
+                      </div>
+                    </td>
+                    <td className="card__cell-bonuses">
+                      <div
+                        className="casino__name"
+                      >
+                        {casinoName}
+                      </div>
+                      <span>
+                        {welcomeBonuses.UpTo
+                          ? `${welcomeBonuses.UpTo}% Up to`
+                          : 'Welcome Bonus'}
+                      </span>
+
+                      <span>
+                        <span>
+                          {' + '}
+                        </span>
+                        &euro;
+                        {numberWithComma(welcomeBonuses.Amount)}
+                      </span>
+
+                      {welcomeBonuses.ZeeSpins
+                        ? (
+                          <span>
+                            <span>
+                              {' + '}
+                            </span>
+                            {`${welcomeBonuses.ZeeSpins} Zee Spins`}
+                          </span>
+                        )
+                        : null
+                      }
+
+                      {welcomeBonuses.ZeePoints
+                        ? (
+                          <span>
+                            <span>
+                              {' + '}
+                            </span>
+                            {`${welcomeBonuses.ZeePoints} Zee Points`}
+                          </span>
+                        )
+                        : null
+                      }
+
+                      {welcomeBonuses.FreeSpins
+                        ? (
+                          <span>
+                            <span>
+                              {' + '}
+                            </span>
+                            {casinoLabel
+                              ? `${welcomeBonuses.FreeSpins} FREE SPINS`
+                              : `${welcomeBonuses.FreeSpins} Free Spins`
+                            }
+                          </span>
+                        )
+                        : null
+                      }
+
+                      {welcomeBonuses.FreeSpinsOnBook
+                        ? (
+                          <span>
+                            <span>
+                              {' + '}
+                            </span>
+                            {`${welcomeBonuses.FreeSpinsOnBook} Free Spins on Book of Dead`}
+                          </span>
+                        )
+                        : null
+                      }
+
+                    </td>
+                    <td className="card__cell-rating">
+                      {`Rating (${userRatingNumber})`}
+                      <Stars
+                        size={16}
+                        value={userRatingAverage / 2}
+                        edit={false}
+                        isHalf
                       />
-                    </div>
-                  </td>
-                  <td>
-                    {welcomeBonuses.welcomeBonusAmount}
-                    _put bonuses
-                  </td>
-                  <td>
-                    {userRatingNumber}
-                    _put stars
-                  </td>
-                  <td>
-                    {casinoName}
-                    _put rating
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                    >
-                      play
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                    <td className="card__cell-average">
+                      {numberDotDecimal(userRatingAverage)}
+                    </td>
+                    <td className="card__cell-button">
+                      <button
+                        type="button"
+                      >
+                        play
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+        </div>
       </section>
     </div>
   );

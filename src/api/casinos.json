@@ -6,12 +6,12 @@
     "casinoUrl": "https://uilogos.co/img/logotype/circle.png",
     "casinoBackgroundColour": "#a000c9",
     "welcomeBonuses": {
-      "welcomeBonusUpTo": 100,
-      "welcomeBonusAmount": 1500,
-      "welcomeBonusZeeSpins": 150,
-      "welcomeBonusZeePoints": 500,
-      "welcomeBonusFreeSpins": null,
-      "welcomeBonusFreeSpinsOnBook": null
+      "UpTo": 100,
+      "Amount": 1500,
+      "ZeeSpins": 150,
+      "ZeePoints": 500,
+      "FreeSpins": null,
+      "FreeSpinsOnBook": null
     },
     "userRatingNumber": 2589,
     "userRatingAverage": 10
@@ -23,12 +23,12 @@
     "casinoUrl": "https://uilogos.co/img/logotype/circle.png",
     "casinoBackgroundColour": "#000000",
     "welcomeBonuses": {
-      "welcomeBonusUpTo": 200,
-      "welcomeBonusAmount": 500,
-      "welcome_bonus_zee-spins": null,
-      "welcomeBonusZeePoints": null,
-      "welcomeBonusFreeSpins": 20,
-      "welcomeBonusFreeSpinsOnBook": null
+      "UpTo": 200,
+      "Amount": 500,
+      "ZeeSpins": null,
+      "ZeePoints": null,
+      "FreeSpins": 20,
+      "FreeSpinsOnBook": null
     },
     "userRatingNumber": 2063,
     "userRatingAverage": 9.9
@@ -40,12 +40,12 @@
     "casinoUrl": "https://uilogos.co/img/logotype/circle.png",
     "casinoBackgroundColour": "#d6e3e2",
     "welcomeBonuses": {
-      "welcomeBonusUpTo": 200,
-      "welcomeBonusAmount": 3000,
-      "welcome_bonus_zee-spins": null,
-      "welcomeBonusZeePoints": null,
-      "welcomeBonusFreeSpins": 30,
-      "welcomeBonusFreeSpinsOnBook": null
+      "UpTo": 200,
+      "Amount": 3000,
+      "ZeeSpins": null,
+      "ZeePoints": null,
+      "FreeSpins": 30,
+      "FreeSpinsOnBook": null
     },
     "userRatingNumber": 1975,
     "userRatingAverage": 9.8
@@ -57,12 +57,12 @@
     "casinoUrl": "https://uilogos.co/img/logotype/circle.png",
     "casinoBackgroundColour": "#00b2ae",
     "welcomeBonuses": {
-      "welcomeBonusUpTo": 100,
-      "welcomeBonusAmount": 200,
-      "welcome_bonus_zee-spins": null,
-      "welcomeBonusZeePoints": null,
-      "welcomeBonusFreeSpins": null,
-      "welcomeBonusFreeSpinsOnBook": 25
+      "UpTo": 100,
+      "Amount": 200,
+      "ZeeSpins": null,
+      "ZeePoints": null,
+      "FreeSpins": null,
+      "FreeSpinsOnBook": 25
     },
     "userRatingNumber": 1890,
     "userRatingAverage": 9.4
@@ -74,12 +74,12 @@
     "casinoUrl": "https://uilogos.co/img/logotype/circle.png",
     "casinoBackgroundColour": "#d6e3e2",
     "welcomeBonuses": {
-      "welcomeBonusUpTo": 100,
-      "welcomeBonusAmount": 200,
-      "welcome_bonus_zee-spins": null,
-      "welcomeBonusZeePoints": null,
-      "welcomeBonusFreeSpins": null,
-      "welcomeBonusFreeSpinsOnBook": 25
+      "UpTo": null,
+      "Amount": 200,
+      "ZeeSpins": null,
+      "ZeePoints": null,
+      "FreeSpins": null,
+      "FreeSpinsOnBook": 25
     },
     "userRatingNumber": 1890,
     "userRatingAverage": 9.4
