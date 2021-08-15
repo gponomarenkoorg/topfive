@@ -1,0 +1,41 @@
+%flexCentering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%desktopVisibleBlock {
+  display: none;
+  @include onDesktop {
+    display: block;
+  }
+}
+
+%mobileVisibleBlock {
+  display: block;
+  @include onDesktop {
+    display: none;
+  }
+}
+
+%desktopVisibleInline {
+  display: none;
+  @include onDesktop {
+    display: inline;
+  }
+}
+
+%mobileVisibleInline {
+  display: inline;
+  @include onDesktop {
+    display: none;
+  }
+}
+
+%M-InlineD-block {
+  display: inline;
+  @include onDesktop {
+    display: block;
+  }
+}
+
