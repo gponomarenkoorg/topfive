@@ -78,8 +78,8 @@
       "Amount": 200,
       "ZeeSpins": null,
       "ZeePoints": null,
-      "FreeSpins": null,
-      "FreeSpinsOnBook": 25
+      "FreeSpins": 20,
+      "FreeSpinsOnBook": null
     },
     "userRatingNumber": 1890,
     "userRatingAverage": 9.4

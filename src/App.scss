@@ -2,14 +2,16 @@
 @import './utils/mixins';
 @import './utils/extends';
 @import './utils/reset';
+@import './utils/normalize';
 
 .body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, Recursive, sans-serif;
   font-size: 100%;
   background-image: url(./img/bck_casino.jpg);
   background-size: cover;
   background-position: center;
   padding: 0;
+  height: 100%;
 }
 .header {
   color: $primaryColor;
@@ -22,9 +24,9 @@
   }
 
   &__wrapper {
-    width: 400px;
+    width: $mobileWidth;
     @include onDesktop {
-      width: 800px;
+      width: $desktopWidth;
     }
   }
 
@@ -49,7 +51,7 @@
 }
 
 .main {
-  padding: 20px;
+  padding: 4px;
   @extend %flexCentering;
   flex-direction: column;
   @include onDesktop {
@@ -63,89 +65,354 @@
 }
 
 .info {
-  width: 400px;
+  width: $mobileWidth;
   color: $primaryColor;
   text-align: left;
+  //
   @include onDesktop {
     text-align: center;
-    width: 800px;
+    width: $desktopWidth;
   }
   &__title {
+    padding-left: 8px;
     font-size: 1.5rem;
     font-weight: normal;
   }
   &__call {
-    font-size: 0.625rem;
-    font-weight: normal;
     @extend %desktopVisibleBlock;
+    @include onDesktop {
+      text-align: center;
+      width: $desktopWidth;
+      font-size: 0.625rem;
+      font-weight: normal;
+    }
   }
   &__subtitle {
+    padding-left: 8px;
     font-size: 0.75rem;
     font-weight: 700;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    text-align: left;
+    background-color: rgba(128, 128, 128, 0.081);
+    @include onDesktop {
+      text-align: center;
+      width: $desktopWidth;
+      background-color: transparent;
+    }
   }
 }
 
 .casinos {
-  border-radius: 16px;
-  border-collapse: collapse;
-  &__head {
-    width: 400px;
-    border-spacing: 0;
-    @include onDesktop {
-      width: 800px;
-    }
-  }
   &__header {
-    & th {
+    display: none;
+
+    @include onDesktop {
+      display: grid;
+      width: $desktopWidth;
+      grid-template-columns: $desktopWidth*0.2 $desktopWidth*0.4 $desktopWidth*0.15 $desktopWidth*0.1 $desktopWidth*0.15;
+    }
+
+    & div {
       color: $primaryColor;
-      text-align: center;
       text-transform: uppercase;
-      background-color: greenyellow;
+      background-color: $darkPrimary;
       height: 2.5rem;
       font-size: 0.75rem;
+      @extend %flexCentering;
     }
-    & th:first-child { border-top-left-radius: 12px; }
-    & th:last-child { border-top-right-radius: 12px; }
-    & th:first-child { border-bottom-left-radius: 12px; }
-    & th:last-child { border-bottom-right-radius: 12px; }
+    & div:first-child {
+      border-top-left-radius: 12px;
+    }
+    & div:last-child { border-top-right-radius: 12px; }
+    & div:first-child { border-bottom-left-radius: 12px; }
+    & div:last-child { border-bottom-right-radius: 12px; }
   }
+
   &__body {
-    border-collapse: separate;
-    border-spacing: 0 15px;
-    width: 400px;
+    width: $mobileWidth;
+
     @include onDesktop {
-      width: 800px;
+      width: $desktopWidth;
     }
   }
 }
 
 .casino {
   &__card {
-    border-radius: 16px;
-    background-color: #fff;
-    & td {
-      border: 1px solid #000;
-      padding: 8px;
-      text-align: center;
-    }
-    & td:first-child {
-      border-top-left-radius: 12px;
-      border-right: hidden;
-    }
-    & td:last-child { border-top-right-radius: 12px; }
-    & td:first-child { border-bottom-left-radius: 12px; }
-    & td:last-child { border-bottom-right-radius: 12px; }
+    border-radius: 12px;
+    margin-bottom: 12px;
+
   }
-  &__wrapper {
-    position: relative;
-    border-radius: 50%;
-    border: 1px solid #000;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: $mobileWidth*0.2 $mobileWidth*0.4 $mobileWidth*0.4;
+    @include onDesktop {
+      grid-template-columns: $desktopWidth*0.2 $desktopWidth*0.4 $desktopWidth*0.4;
+    }
+  }
+}
+
+.card {
+  background-color: $primaryColor;
+  padding: 4px 4px;
+  height: 100px;
+  position: relative;
+  @extend %flexCentering;
+  flex-direction: column;
+  @include onDesktop {
+    padding: 0;
+    height: 120px;
+  }
+  &__cell {
     padding: 4px;
-    width: 80px;
-    height: 80px;
+    @include onDesktop {
+      padding: 0;
+    }
+    @extend %flexCentering;
+    flex-direction: column;
+    &--wrapper {
+      position: relative;
+      border-radius: 50%;
+      border: 1px solid #000;
+      width: 48px;
+      height: 48px;
+      @include onDesktop {
+        position: relative;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 0;
+        border: 0;
+        height: 120px;
+        width: 120px;
+      }
+    }
+    &--img {
+      height: 100%;
+      width: 100%;
+    }
+    &--triangle {
+      display: none;
+    @include onDesktop {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 60px solid transparent;
+      border-left: 20px solid;
+      border-bottom: 60px solid transparent;
   }
-  &__img {
-    height: 100%;
+    }
+    &-image {
+      @extend %flexCentering;
+      flex-direction: column;
+      grid-column: 1 / 2;
+      @include onDesktop {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+    }
+    &-bonuses {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 4px;
+      grid-column: 2 / 3;
+
+      &-block {
+        font-size: 0.625rem;
+        text-align: center;
+        padding: 4px;
+      }
+      &-plus {
+        @extend %mobileVisibleInline;
+      }
+      &-amount {
+        @extend %M-InlineD-block;
+        @include onDesktop {
+          padding: 4px 0;
+          font-weight: 700;
+          font-size: 1.5rem;
+        }
+      }
+      &-others {
+        @extend %M-InlineD-block;
+        @include onDesktop {
+          padding: 4px 0;
+        }
+      }
+    }
+    &-inner {
+      grid-column: 3 / 4;
+      height: 100%;
+      padding-top: 8px;
+      padding-right: 8px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      flex-direction: column;
+      @include onDesktop {
+        display: grid;
+        align-items: center;
+        padding: 0;
+        grid-template-columns: $desktopWidth*0.15 $desktopWidth*0.1 $desktopWidth*0.15;
+      }
+    }
+    &-rating {
+      @include onDesktop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        grid-column: 1 / 2;
+        height: 80px;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: $secondaryColor;
+      }
+      &--number {
+        @extend %desktopVisibleBlock;
+        @include onDesktop {
+          font-size: 0.625rem;
+
+        }
+      }
+    }
+    &-average {
+      display: none;
+      @include onDesktop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: Recursive;
+        font-size: 2rem;
+        font-weight: 700;
+        grid-column: 2 / 3;
+        height: 80px;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: $secondaryColor;
+      }
+    }
+
+    &-button {
+      @include onDesktop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-basis: 100%;
+        grid-column: 3 / 4;
+        height: 80px;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: $secondaryColor;
+      }
+    }
+  }
+  &__name {
+    @extend %mobileVisibleBlock;
+    text-transform: capitalize;
+    font-weight: 700;
     width: 100%;
+    text-align: left;
+    padding-left: 16px;
   }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 24px;
+  border-radius: 4px;
+  color: $primaryColor;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  text-decoration: none;
+  @include onDesktop {
+    width: 80px;
+    height: 36px;
+  }
+  background-color: $buttonColor;
+  box-shadow: 0 13px 27px rgba(0, 181, 124, 0.04);
+  transition: background-color $time ease, box-shadow $time ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: background-color $time ease,
+      box-shadow $time ease,
+      color $time ease;
+    background-color: $color-hover;
+    box-shadow: 0 13px 27px rgba(0, 181, 57, 0.46);
+  }
+  &:active {
+    cursor: pointer;
+    transition: background-color $time ease,
+      box-shadow $time ease,
+      color $time ease;
+    background-color: $color-hover;
+    box-shadow: 0 8px 14px rgba(99, 199, 17, 0.48);
+  }
+}
+
+.label {
+  &__desktop {
+    display: none;
+    @include onDesktop {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      height: 2.0rem;
+      line-height: 2rem;
+      width: 200px;
+      font-size: 0.75rem;
+      top: 0;
+      left: 0;
+      text-align: center;
+      background-color: greenyellow;
+      text-transform: uppercase;
+      color: $primaryColor;
+      border-top-left-radius: 12px;
+    }
+    &:after {
+      @include onDesktop {
+        position: absolute;
+        content: "";
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-right: 1rem solid $primaryColor;
+        border-top: 1rem solid transparent;
+        border-bottom: 1rem solid transparent;
+      }
+    }
+  }
+  &__mobile {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    width: 120px;
+    font-size: 0.5rem;
+    top: 0;
+    right: 0;
+    text-align: center;
+    border-top-right-radius: 12px;
+    background-color: greenyellow;
+    text-transform: uppercase;
+    color: $primaryColor;
+  @include onDesktop {
+    display: none;
+  }
+}
 }

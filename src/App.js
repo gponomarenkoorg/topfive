@@ -4,7 +4,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import Stars from 'react-rating-stars-component';
-// import cn from 'classnames';
 import logo from './img/logo.png';
 import './App.scss';
 import casinosList from './api/casinos.json';
@@ -40,146 +39,174 @@ export const App = () => {
       </section>
 
       <section className="main">
-        <div className="info">
+        <article className="info">
           <h1 className="info__title">
             TOP 5 Real Money Online Casino Bonus List!
           </h1>
           <p className="info__call">Play online slots for real money at trusted online casinos in Europe. Claim your exclusive welcome bonus and start playing slots today!</p>
           <h2 className="info__subtitle">10,302 Claimed Bonuses And Counting!</h2>
-        </div>
-        <div className="main__wrapper">
-          <div className="casinos">
-            <table className="casinos__head">
-              <tr className="casinos__header">
-                <th className="casinos__header-image">casino</th>
-                <th className="casinos__header-bonuses">welcome bonus</th>
-                <th className="casinos__header-rating">user rating</th>
-                <th className="casinos__header-average">rating</th>
-                <th className="casinos__header-button">play now</th>
-              </tr>
-            </table>
+        </article>
 
-            <table className="casinos__body">
+        <div className="main__wrapper">
+          <article className="casinos">
+            <div className="casinos__header">
+              <div className="casinos__header-image">casino</div>
+              <div className="casinos__header-bonuses">welcome bonus</div>
+              <div className="casinos__header-rating">user rating</div>
+              <div className="casinos__header-average">rating</div>
+              <div className="casinos__header-button">play now</div>
+            </div>
+
+            <div className="casinos__body">
               {casinos.map(casino => {
                 const { id, casinoName, casinoLabel, casinoUrl, casinoBackgroundColour, welcomeBonuses, userRatingNumber, userRatingAverage } = casino;
 
                 return (
-                  <tr
+                  <div
                     key={id}
-                    className="casino__card"
+                    className="casino__card casino__grid card"
                   >
-                    {/* // put label here */}
-                    <td className="card__cell-image">
+                    {casinoLabel
+                    && (
+                      <span className="label__desktop">
+                        {casinoLabel}
+                      </span>
+                    )
+                    }
+                    <div className="card__cell card__cell-image">
 
                       <div
-                        className="casino__wrapper"
+                        className="card__cell--wrapper"
                         style={{
                           backgroundColor: casinoBackgroundColour,
                         }}
                       >
                         <img
-                          className="casino__img"
+                          className="card__cell--img"
                           src={casinoUrl}
                           alt={casinoName}
                         />
                       </div>
-                    </td>
-                    <td className="card__cell-bonuses">
                       <div
-                        className="casino__name"
+                        className="card__cell--triangle"
+                        style={{
+                          borderLeftColor: casinoBackgroundColour,
+                        }}
+                      />
+                    </div>
+                    <div className="card__cell-bonuses">
+                      <div
+                        className="card__name"
                       >
                         {casinoName}
                       </div>
-                      <span>
-                        {welcomeBonuses.UpTo
-                          ? `${welcomeBonuses.UpTo}% Up to`
-                          : 'Welcome Bonus'}
-                      </span>
-
-                      <span>
-                        <span>
-                          {' + '}
+                      <div className="card__cell-bonuses-block">
+                        <span
+                          className="card__cell-bonuses-others"
+                        >
+                          {welcomeBonuses.UpTo
+                            ? `${welcomeBonuses.UpTo}% Up to`
+                            : 'Welcome Bonus'}
                         </span>
-                        &euro;
-                        {numberWithComma(welcomeBonuses.Amount)}
+
+                        <span className="card__cell-bonuses-amount">
+                          <span className="card__cell-bonuses-plus">
+                            {' + '}
+                          </span>
+                          &euro;
+                          {numberWithComma(welcomeBonuses.Amount)}
+                        </span>
+
+                        {welcomeBonuses.ZeeSpins
+                          ? (
+                            <span className="card__cell-bonuses-others">
+                              <span>
+                                {' + '}
+                              </span>
+                              {`${welcomeBonuses.ZeeSpins} Zee Spins`}
+                            </span>
+                          )
+                          : null
+                        }
+
+                        {welcomeBonuses.ZeePoints
+                          ? (
+                            <span className="card__cell-bonuses-others">
+                              <span>
+                                {' + '}
+                              </span>
+                              {`${welcomeBonuses.ZeePoints} Zee Points`}
+                            </span>
+                          )
+                          : null
+                        }
+
+                        {welcomeBonuses.FreeSpins
+                          ? (
+                            <span className="card__cell-bonuses-others">
+                              <span>
+                                {' + '}
+                              </span>
+                              {casinoLabel
+                                ? `${welcomeBonuses.FreeSpins} FREE SPINS`
+                                : `${welcomeBonuses.FreeSpins} Free Spins`
+                              }
+                            </span>
+                          )
+                          : null
+                        }
+
+                        {welcomeBonuses.FreeSpinsOnBook
+                          ? (
+                            <span className="card__cell-bonuses-others">
+                              <span>
+                                {' + '}
+                              </span>
+                              {`${welcomeBonuses.FreeSpinsOnBook} Free Spins on Book of Dead`}
+                            </span>
+                          )
+                          : null
+                        }
+                      </div>
+
+                    </div>
+                    <div className="card__cell-inner">
+                      <div className="card__cell-rating">
+                        <div className="card__cell-rating--number">
+                          {`Rating (${userRatingNumber})`}
+                        </div>
+
+                        <Stars
+                          size={16}
+                          value={userRatingAverage / 2}
+                          edit={false}
+                          isHalf
+                        />
+                      </div>
+                      <div className="card__cell-average">
+                        {numberDotDecimal(userRatingAverage)}
+                      </div>
+                      <div className="card__cell-button">
+                        <button
+                          type="button"
+                          className="button"
+                        >
+                          Play
+                        </button>
+                      </div>
+                    </div>
+                    {casinoLabel
+                    && (
+                      <span className="label__mobile">
+                        {casinoLabel}
                       </span>
-
-                      {welcomeBonuses.ZeeSpins
-                        ? (
-                          <span>
-                            <span>
-                              {' + '}
-                            </span>
-                            {`${welcomeBonuses.ZeeSpins} Zee Spins`}
-                          </span>
-                        )
-                        : null
-                      }
-
-                      {welcomeBonuses.ZeePoints
-                        ? (
-                          <span>
-                            <span>
-                              {' + '}
-                            </span>
-                            {`${welcomeBonuses.ZeePoints} Zee Points`}
-                          </span>
-                        )
-                        : null
-                      }
-
-                      {welcomeBonuses.FreeSpins
-                        ? (
-                          <span>
-                            <span>
-                              {' + '}
-                            </span>
-                            {casinoLabel
-                              ? `${welcomeBonuses.FreeSpins} FREE SPINS`
-                              : `${welcomeBonuses.FreeSpins} Free Spins`
-                            }
-                          </span>
-                        )
-                        : null
-                      }
-
-                      {welcomeBonuses.FreeSpinsOnBook
-                        ? (
-                          <span>
-                            <span>
-                              {' + '}
-                            </span>
-                            {`${welcomeBonuses.FreeSpinsOnBook} Free Spins on Book of Dead`}
-                          </span>
-                        )
-                        : null
-                      }
-
-                    </td>
-                    <td className="card__cell-rating">
-                      {`Rating (${userRatingNumber})`}
-                      <Stars
-                        size={16}
-                        value={userRatingAverage / 2}
-                        edit={false}
-                        isHalf
-                      />
-                    </td>
-                    <td className="card__cell-average">
-                      {numberDotDecimal(userRatingAverage)}
-                    </td>
-                    <td className="card__cell-button">
-                      <button
-                        type="button"
-                      >
-                        play
-                      </button>
-                    </td>
-                  </tr>
+                    )
+                    }
+                  </div>
                 );
               })}
-            </table>
-          </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
