@@ -40,11 +40,3 @@ You can use any images for background, logo etc.
 For creating click.log file use PHP code
 (PHP example [here](https://stackoverflow.com/questions/24972424/create-or-write-append-in-text-file/44872604))
 
-
-<strong> Requirements: </strong>
-* -> Experience on FrontEnd position 1+ year
-* -> High level of HTML&CSS, JS
-* -> Experience with Wordpress
-* -> Basic knowledge of PHP is a plus
-* -> English intermediate
-* -> Ability to work independently and find solutions for non-standard tasks
