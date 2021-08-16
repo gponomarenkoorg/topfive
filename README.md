@@ -1,5 +1,5 @@
 # Top 5 casinos LP
-Landing Page based on React App renders a top 5 of online casinos with a large number of properties (discounts, labels, ratings, etc.).
+Landing Page based on React App which renders "top-5" online casinos with a large number of properties (discounts, labels, ratings, etc.).
 
 [DEMO LINK](https://gponomarenkoorg.github.io/topfive/)
 
