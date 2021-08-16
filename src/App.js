@@ -3,14 +3,15 @@ import Stars from 'react-rating-stars-component';
 import axios from 'axios';
 import logo from './img/logo.png';
 import './App.scss';
+import { sendData } from './api/api';
 import casinosList from './api/casinos.json';
+import { numberDotDecimal, numberWithComma } from './functions';
 
 export const App = () => {
   const [casinos, setCasinos] = useState([]);
   const [userIp, setUserIp] = useState(null);
   const [dateNow, setDateNow] = useState(null);
   const [buttonId, setButtonId] = useState(null);
-  const [error, setError] = useState(null);
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
@@ -23,9 +24,9 @@ export const App = () => {
     setUserIp(res.data.IPv4);
   };
 
-  const getDateNow = async() => {
+  const getDateNow = () => {
     const actual = new Date();
-    const actualDateTime = await actual.toISOString();
+    const actualDateTime = actual.toISOString();
 
     setDateNow(actualDateTime);
   };
@@ -34,7 +35,7 @@ export const App = () => {
     setButtonId(event.target.value);
   };
 
-  const buildJsonData = async() => {
+  const buildJsonData = () => {
     const jsonFile = {
       user: userIp,
       date: dateNow,
@@ -44,48 +45,19 @@ export const App = () => {
     setJsonData(jsonFile);
   };
 
-  const sendData = async() => {
-    const request = await fetch('http://localhost', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(jsonData),
-    });
-
-    console.log(request);
-  };
-
   useEffect(() => {
-    const getUserIp = async() => {
-      try {
-        getIp();
-        getDateNow();
-        buildJsonData();
-        sendData();
-      } catch (userError) {
-        setError(`Loading error: ${userError.message}`);
-      }
-    };
-
-    getUserIp();
+    getIp().then(data => console.log(data));
+    getDateNow();
+    buildJsonData();
   }, [buttonId]);
 
-  const numberWithComma = (x) => {
-    return x % 1000 === 0 ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;
-  };
-
-  const numberDotDecimal = (number) => {
-    return number % 1 === 0 ? number.toString().concat('.0') : number.toFixed(1).toString();
-  };
+  useEffect(() => {
+    sendData('http://localhost', jsonData)
+      .then(data => console.log(data));
+  }, [jsonData]);
 
   return (
     <div className="body">
-      {error
-        ? (
-          <h1>{error}</h1>
-        )
-        : null}
       <section className="header">
         <div className="header__wrapper">
           <div className="header__logo">
@@ -119,7 +91,17 @@ export const App = () => {
 
             <div className="casinos__body">
               {casinos.map(casino => {
-                const { id, casinoName, casinoLabel, casinoUrl, casinoBackgroundColour, welcomeBonuses, userRatingNumber, userRatingAverage } = casino;
+                const
+                  {
+                    id,
+                    casinoName,
+                    casinoLabel,
+                    casinoUrl,
+                    casinoBackgroundColour,
+                    welcomeBonuses,
+                    userRatingNumber,
+                    userRatingAverage
+                  } = casino;
 
                 return (
                   <div
@@ -178,19 +160,18 @@ export const App = () => {
                         </span>
 
                         {welcomeBonuses.ZeeSpins
-                          ? (
-                            <span className="card__cell-bonuses-others">
-                              <span>
-                                {' + '}
-                              </span>
-                              {`${welcomeBonuses.ZeeSpins} Zee Spins`}
+                        && (
+                          <span className="card__cell-bonuses-others">
+                            <span>
+                              {' + '}
                             </span>
-                          )
-                          : null
+                            {`${welcomeBonuses.ZeeSpins} Zee Spins`}
+                          </span>
+                        )
                         }
 
                         {welcomeBonuses.ZeePoints
-                          ? (
+                          && (
                             <span className="card__cell-bonuses-others">
                               <span>
                                 {' + '}
@@ -198,11 +179,10 @@ export const App = () => {
                               {`${welcomeBonuses.ZeePoints} Zee Points`}
                             </span>
                           )
-                          : null
                         }
 
                         {welcomeBonuses.FreeSpins
-                          ? (
+                          && (
                             <span className="card__cell-bonuses-others">
                               <span>
                                 {' + '}
@@ -213,11 +193,10 @@ export const App = () => {
                               }
                             </span>
                           )
-                          : null
                         }
 
                         {welcomeBonuses.FreeSpinsOnBook
-                          ? (
+                          && (
                             <span className="card__cell-bonuses-others">
                               <span>
                                 {' + '}
@@ -225,7 +204,6 @@ export const App = () => {
                               {`${welcomeBonuses.FreeSpinsOnBook} Free Spins on Book of Dead`}
                             </span>
                           )
-                          : null
                         }
                       </div>
 
