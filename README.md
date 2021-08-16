@@ -1,5 +1,5 @@
 # Top 5 casinos LP
-Landing Page based on React App renders a top 5 of online casinos with a large number of properties (discounts, labels, ratings, etc.).
+Landing Page based on React App which renders "top-5" online casinos with a large number of properties (discounts, labels, ratings, etc.).
 
 [DEMO LINK](https://gponomarenkoorg.github.io/topfive/)
 
@@ -18,12 +18,15 @@ VS Code
 
 * `Fork` and `clone` this repository
 * Run `npm install` in your terminal
-* Run `npm i stars`
-* Run `npm i axios`
 * Run `npm start`
 
-! change `url` in the function `sendData` from <`http://localhost`> to <`your_server`> !
+## IMPORTANT NOTICE
+### !!! It is only client side app. !!!
 
+<strong>
+To log data, please, change `url` in the function `sendData` from <`http://localhost`>
+to <`your_server`> and set up your PHP server side accordingly.
+</strong>
 
 ## Troubleshooting
 
@@ -40,11 +43,3 @@ You can use any images for background, logo etc.
 For creating click.log file use PHP code
 (PHP example [here](https://stackoverflow.com/questions/24972424/create-or-write-append-in-text-file/44872604))
 
-
-<strong> Requirements: </strong>
-* -> Experience on FrontEnd position 1+ year
-* -> High level of HTML&CSS, JS
-* -> Experience with Wordpress
-* -> Basic knowledge of PHP is a plus
-* -> English intermediate
-* -> Ability to work independently and find solutions for non-standard tasks
