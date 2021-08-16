@@ -18,8 +18,6 @@ VS Code
 
 * `Fork` and `clone` this repository
 * Run `npm install` in your terminal
-* Run `npm i stars`
-* Run `npm i axios`
 * Run `npm start`
 
 ## IMPORTANT NOTICE
