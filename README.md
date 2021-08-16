@@ -22,7 +22,7 @@ VS Code
 * Run `npm i axios`
 * Run `npm start`
 
-!!! It is only client side app. !!!
+<strong>!!! It is only client side app. !!!</strong>
  
 To log data, please, change `url` in the function `sendData` from <`http://localhost`> 
 to <`your_server`> and set up your PHP server side accordingly.
