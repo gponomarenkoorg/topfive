@@ -1,19 +1,75 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable arrow-body-style */
-/* eslint-disable arrow-parens */
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import Stars from 'react-rating-stars-component';
+import axios from 'axios';
 import logo from './img/logo.png';
 import './App.scss';
 import casinosList from './api/casinos.json';
 
 export const App = () => {
   const [casinos, setCasinos] = useState([]);
+  const [userIp, setUserIp] = useState(null);
+  const [dateNow, setDateNow] = useState(null);
+  const [buttonId, setButtonId] = useState(null);
+  const [error, setError] = useState(null);
+  const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
     setCasinos(casinosList);
   }, []);
+
+  const getIp = async() => {
+    const res = await axios.get('https://geolocation-db.com/json/');
+
+    setUserIp(res.data.IPv4);
+  };
+
+  const getDateNow = async() => {
+    const actual = new Date();
+    const actualDateTime = await actual.toISOString();
+
+    setDateNow(actualDateTime);
+  };
+
+  const getId = (event) => {
+    setButtonId(event.target.value);
+  };
+
+  const buildJsonData = async() => {
+    const jsonFile = {
+      user: userIp,
+      date: dateNow,
+      id: buttonId,
+    };
+
+    setJsonData(jsonFile);
+  };
+
+  const sendData = async() => {
+    const request = await fetch('http://localhost', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(jsonData),
+    });
+
+    console.log(request);
+  };
+
+  useEffect(() => {
+    const getUserIp = async() => {
+      try {
+        getIp();
+        getDateNow();
+        buildJsonData();
+        sendData();
+      } catch (userError) {
+        setError(`Loading error: ${userError.message}`);
+      }
+    };
+
+    getUserIp();
+  }, [buttonId]);
 
   const numberWithComma = (x) => {
     return x % 1000 === 0 ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;
@@ -25,7 +81,11 @@ export const App = () => {
 
   return (
     <div className="body">
-
+      {error
+        ? (
+          <h1>{error}</h1>
+        )
+        : null}
       <section className="header">
         <div className="header__wrapper">
           <div className="header__logo">
@@ -189,7 +249,10 @@ export const App = () => {
                       <div className="card__cell-button">
                         <button
                           type="button"
+                          id={id}
+                          value={id}
                           className="button"
+                          onClick={getId}
                         >
                           Play
                         </button>

@@ -377,7 +377,7 @@
       top: 0;
       left: 0;
       text-align: center;
-      background-color: greenyellow;
+      background-color: $color-hover;
       text-transform: uppercase;
       color: $primaryColor;
       border-top-left-radius: 12px;
@@ -408,7 +408,7 @@
     right: 0;
     text-align: center;
     border-top-right-radius: 12px;
-    background-color: greenyellow;
+    background-color: $color-hover;
     text-transform: uppercase;
     color: $primaryColor;
   @include onDesktop {
