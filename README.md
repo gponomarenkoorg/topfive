@@ -23,7 +23,7 @@ VS Code
 ### IMPORTANT NOTICE
 ### It is only client side app 
 <strong>
-On click “Play” button saves info about this action (user ip, date time, button id).
+On click “Play” button info about this action (user ip, date time, button id) saves.
 </strong>
 
 ## Troubleshooting
