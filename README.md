@@ -23,7 +23,7 @@ VS Code
 ### IMPORTANT NOTICE
 ### It is only client side app 
 <strong>
-On click “Play” button info about this action (user ip, date time, button id) saves abd sends to server side.
+On click “Play” button info about this action (user ip, date time, button id) saves and sends to server side.
 </strong>
 
 ## Troubleshooting
